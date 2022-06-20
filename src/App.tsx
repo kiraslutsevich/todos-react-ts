@@ -1,27 +1,22 @@
 import React, { useState, useEffect, useMemo } from 'react';
 // import './App.css';
-// import Header from './components/Header';
+import Header from './components/Header';
 // import TodoInput from './components/todo-input/TodoInput';
 // import TodoList from './components/todo-list/TodoList';
 // import Footer from './components/footer/Footer';
 // import ToggleAll from './components/ToggleAll';
-import LocalStorageHelper from './LocalStorageHelper';
+import storage from './storage';
 import CreateRandomId from './CreateRandomId';
 
-
-const LIST_LOCALSTORAGE_KEY = new LocalStorageHelper('todos');
-const FILTER_LOCALSTORAGE_KEY = new LocalStorageHelper('filter');
+interface Task {
+  text: string;
+  isCompleted: boolean;
+  id: number;
+}
 
 const App = () => {
-  interface task {
-    text: string,
-    isCompleted: boolean,
-    id: number,
-  }
-
-
-  const [todoList, setTodoList] = useState(LIST_LOCALSTORAGE_KEY.get());
-  const [filter, setFilter] = useState(FILTER_LOCALSTORAGE_KEY.get() || 'all');
+  const [todoList, setTodoList] = useState<Task[]>(storage.todosList.get());
+  const [filter, setFilter] = useState<'all' | 'active' | 'completed'>(storage.todoFilter.get() || 'all');
 
   useEffect(() => {
     LIST_LOCALSTORAGE_KEY.set(todoList)
@@ -33,7 +28,7 @@ const App = () => {
 
   const [filteredList, activeTasksCounter] = useMemo(() => {
     let activeTasksCounter = 0;
-    const list = todoList.filter((task: task) => {
+    const list = todoList.filter((task: Task) => {
       if (!task.isCompleted) {
         activeTasksCounter++;
       }
@@ -50,27 +45,27 @@ const App = () => {
     if (!value) {
       return;
     }
-    const task: task = {
+    const task: Task = {
       text: value,
       isCompleted: false,
       id: CreateRandomId(),
     }
-    const newArr: Array<task> = [...todoList, task];
+    const newArr: Array<Task> = [...todoList, task];
     setTodoList(newArr);
   };
 
-  const handleTodoUpdate = (id: number, data: []) => {
-    const newArr: Array<task> = todoList.map((task: task) => task.id === id ? data : task);
+  const handleTodoUpdate = (id: number, data: Task) => {
+    const newArr = todoList.map((task: Task) => task.id === id ? data : task);
     setTodoList(newArr);
   };
 
   const handleTodoDelete = (id: number) => {
-    const newArr: Array<task> = todoList.filter((task: task) => task.id !== id);
+    const newArr = todoList.filter((task: Task) => task.id !== id);
     setTodoList(newArr);
   };
 
   const handleSelectAll = () => {
-    const newArr: Array<task> = todoList.map((task: task) => {
+    const newArr = todoList.map((task) => {
       if (activeTasksCounter === 0) {
         return { ...task, isCompleted: false }
       } else {
@@ -81,15 +76,15 @@ const App = () => {
   };
 
   const handleClearCompleted = () => {
-    const newArr = todoList.filter((task: task) => !task.isCompleted);
+    const newArr = todoList.filter((task: Task) => !task.isCompleted);
     setTodoList(newArr);
   }
 
   return (
     <div className="app">
-      {/* <Header />
+      <Header />
 
-      <section className="input">
+      {/* <section className="input">
         <ToggleAll onAllSelect={handleSelectAll} />
 
         <TodoInput onTodoCreate={handleTodoCreate} />
@@ -107,8 +102,8 @@ const App = () => {
           onFilterChange={setFilter}
           onCompletedClear={handleClearCompleted}
           filter={filter}
-        />
-      } */}
+        /> */}
+
     </div>
   );
 };

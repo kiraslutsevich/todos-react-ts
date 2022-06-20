@@ -1,21 +1,16 @@
-interface LocalStorageConstructor {
-  new(name: string): LocalStorageHelper;
-}
-interface LocalStorageHelper {
-  name: string;
-  get(): [];
-  set(data: string[]): void;
+class LocalStorageHelper<DataType> {
+  key: string;
+  constructor(key: string) {
+    this.key = key;
+  }
+
+  get = (): DataType => {
+    return JSON.parse(localStorage.getItem(this.key) || '[]');
+  }
+
+  set(data: DataType) {
+    localStorage.setItem(this.key, JSON.stringify(data));
+  }
 }
 
-class LocalStorageHelper implements LocalStorageHelper {
-  constructor(name: string) {
-    this.name = name;
-  }
-  get() {
-    return JSON.parse(localStorage.getItem(this.name) || '[]');
-  }
-  set(data: string[]) {
-    localStorage.setItem(this.name, JSON.stringify(data));
-  }
-}
 export default LocalStorageHelper;
