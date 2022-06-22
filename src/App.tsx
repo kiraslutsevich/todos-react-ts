@@ -1,23 +1,18 @@
 import React, { useState, useEffect, useMemo } from 'react';
-// import './App.css';
+import styles from './App.module.css'
 import Header from './components/header/Header';
 import TodoInput from './components/container/TodoInput';
 import ToggleAll from './components/container/ToggleAll';
-// import TodoList from './components/todo-list/TodoList';
-// import Footer from './components/footer/Footer';
-
+import TodoList from './components/main/TodoList';
+import Footer from './components/footer/Footer';
 import storage from './storage';
+import { FilterValue } from './types';
 import CreateRandomId from './CreateRandomId';
+import { Task } from './types';
 
-export interface Task {
-  text: string;
-  isCompleted: boolean;
-  id: number;
-};
-
-const App = () => {
+const App: React.FC = () => {
   const [todoList, setTodoList] = useState<Task[]>(storage.todosList.get());
-  const [filter, setFilter] = useState<'all' | 'active' | 'completed'>(storage.todoFilter.get() || 'all');
+  const [filter, setFilter] = useState<FilterValue>(storage.todoFilter.get() || 'all');
 
   useEffect(() => {
     storage.todosList.set(todoList);
@@ -82,29 +77,29 @@ const App = () => {
   }
 
   return (
-    <div className="app">
+    <div className={styles.App}>
       <Header />
 
-      <section className="container">
+      <section className={styles.container}>
         <ToggleAll onAllSelect={handleSelectAll} />
 
         <TodoInput onTodoCreate={handleTodoCreate} />
       </section>
 
-      {/* <TodoList
-        filteredList={filteredList}
+      <TodoList
+        todoList={filteredList}
         onTodoDelete={handleTodoDelete}
         onTodoUpdate={handleTodoUpdate}
       />
 
-      {todoList.length > 0 &&
+      {todoList.length > 0 && (
         <Footer
           activeTasksCounter={activeTasksCounter}
           onFilterChange={setFilter}
           onCompletedClear={handleClearCompleted}
           filter={filter}
         />
-      }*/}
+      )}
     </div>
   );
 };

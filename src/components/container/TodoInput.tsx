@@ -1,12 +1,11 @@
 import { useState } from 'react';
-
 import styles from './TodoInput.module.css'
 
-interface MyProps {
+interface Props {
   onTodoCreate: (params: string) => void;
 }
 
-const TodoInput = (props: MyProps) => {
+const TodoInput: React.FC<Props> = (props) => {
   const { onTodoCreate } = props;
   const [value, setValue] = useState('');
 

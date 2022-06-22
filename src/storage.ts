@@ -1,7 +1,8 @@
 import LocalStorageHelper from './LocalStorageHelper';
-import { Task } from './App';
+import { Task, FilterValue } from './types';
 
-export default {
+export default{
   todosList: new LocalStorageHelper<Array<Task>>('todo-list'),
-  todoFilter: new LocalStorageHelper<'all' | 'active' | 'completed'>('todo-filter'),
+  todoFilter: new LocalStorageHelper<FilterValue>('todo-filter'),
 };
+

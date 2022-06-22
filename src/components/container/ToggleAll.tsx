@@ -1,10 +1,10 @@
 import styles from './ToggleAll.module.css';
 
-interface myProps{
+interface Props {
   onAllSelect: () => void;
 }
 
-const ToggleAll = (props : myProps) => {
+const ToggleAll: React.FC<Props> = (props) => {
   const { onAllSelect } = props;
   return (
     <button
