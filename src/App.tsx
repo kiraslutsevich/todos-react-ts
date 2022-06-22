@@ -46,12 +46,12 @@ const App: React.FC = () => {
       isCompleted: false,
       id: CreateRandomId(),
     };
-    const newArr: Array<Task> = [...todoList, task];
+    const newArr = [...todoList, task];
     setTodoList(newArr);
   };
 
   const handleTodoUpdate = (id: number, data: Task) => {
-    const newArr = todoList.map((task: Task) => task.id === id ? data : task);
+    const newArr = todoList.map((task) => task.id === id ? data : task);
     setTodoList(newArr);
   };
 
