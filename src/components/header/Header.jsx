@@ -1,11 +1,11 @@
 import styles from './Header.module.css'
 
-const Header = (props) => {
+const Header = () => {
   return (
     <h1
-    className={styles.head}
+      className={styles.head}
     >
-    todos
+      todos
     </h1>
   );
 };

@@ -1,29 +1,30 @@
 import React, { useState, useEffect, useMemo } from 'react';
 // import './App.css';
-import Header from './components/Header';
-// import TodoInput from './components/todo-input/TodoInput';
+import Header from './components/header/Header';
+import TodoInput from './components/container/TodoInput';
+import ToggleAll from './components/container/ToggleAll';
 // import TodoList from './components/todo-list/TodoList';
 // import Footer from './components/footer/Footer';
-// import ToggleAll from './components/ToggleAll';
+
 import storage from './storage';
 import CreateRandomId from './CreateRandomId';
 
-interface Task {
+export interface Task {
   text: string;
   isCompleted: boolean;
   id: number;
-}
+};
 
 const App = () => {
   const [todoList, setTodoList] = useState<Task[]>(storage.todosList.get());
   const [filter, setFilter] = useState<'all' | 'active' | 'completed'>(storage.todoFilter.get() || 'all');
 
   useEffect(() => {
-    LIST_LOCALSTORAGE_KEY.set(todoList)
+    storage.todosList.set(todoList);
   }, [todoList]);
 
   useEffect(() => {
-    FILTER_LOCALSTORAGE_KEY.set(filter);
+    storage.todoFilter.set(filter);
   }, [filter]);
 
   const [filteredList, activeTasksCounter] = useMemo(() => {
@@ -31,25 +32,25 @@ const App = () => {
     const list = todoList.filter((task: Task) => {
       if (!task.isCompleted) {
         activeTasksCounter++;
-      }
+      };
       if (filter === 'all') {
         return true;
-      }
+      };
       const requiredStatus = filter === 'completed';
       return task.isCompleted === requiredStatus;
-    })
+    });
     return [list, activeTasksCounter]
-  }, [todoList, filter])
+  }, [todoList, filter]);
 
   const handleTodoCreate = (value: string) => {
     if (!value) {
       return;
-    }
+    };
     const task: Task = {
       text: value,
       isCompleted: false,
       id: CreateRandomId(),
-    }
+    };
     const newArr: Array<Task> = [...todoList, task];
     setTodoList(newArr);
   };
@@ -60,7 +61,7 @@ const App = () => {
   };
 
   const handleTodoDelete = (id: number) => {
-    const newArr = todoList.filter((task: Task) => task.id !== id);
+    const newArr = todoList.filter((task) => task.id !== id);
     setTodoList(newArr);
   };
 
@@ -70,13 +71,13 @@ const App = () => {
         return { ...task, isCompleted: false }
       } else {
         return { ...task, isCompleted: true }
-      }
+      };
     });
     setTodoList(newArr);
   };
 
   const handleClearCompleted = () => {
-    const newArr = todoList.filter((task: Task) => !task.isCompleted);
+    const newArr = todoList.filter((task) => !task.isCompleted);
     setTodoList(newArr);
   }
 
@@ -84,13 +85,13 @@ const App = () => {
     <div className="app">
       <Header />
 
-      {/* <section className="input">
+      <section className="container">
         <ToggleAll onAllSelect={handleSelectAll} />
 
         <TodoInput onTodoCreate={handleTodoCreate} />
       </section>
 
-      <TodoList
+      {/* <TodoList
         filteredList={filteredList}
         onTodoDelete={handleTodoDelete}
         onTodoUpdate={handleTodoUpdate}
@@ -102,8 +103,8 @@ const App = () => {
           onFilterChange={setFilter}
           onCompletedClear={handleClearCompleted}
           filter={filter}
-        /> */}
-
+        />
+      }*/}
     </div>
   );
 };
