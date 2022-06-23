@@ -2,7 +2,7 @@ import styles from './CounterActiveTasks.module.css';
 
 interface Props{
   count: number,
-};
+}
 
 const CounterActiveTasks: React.FC<Props> = (props) => {
   return (

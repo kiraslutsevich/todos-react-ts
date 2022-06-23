@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import styles from './App.module.css'
+import styles from './App.module.css';
 import Header from './components/header/Header';
 import TodoInput from './components/container/TodoInput';
 import ToggleAll from './components/container/ToggleAll';
 import TodoList from './components/main/TodoList';
 import Footer from './components/footer/Footer';
-import storage from './storage';
-import { FilterValue } from './types';
-import CreateRandomId from './CreateRandomId';
-import { Task } from './types';
+import storage from './utilites/storage';
+import { FilterValue, Task } from './utilites/types';
+import CreateRandomId from './utilites/CreateRandomId';
 
 const App: React.FC = () => {
   const [todoList, setTodoList] = useState<Task[]>(storage.todosList.get());
@@ -27,20 +26,20 @@ const App: React.FC = () => {
     const list = todoList.filter((task: Task) => {
       if (!task.isCompleted) {
         activeTasksCounter++;
-      };
+      }
       if (filter === 'all') {
         return true;
-      };
+      }
       const requiredStatus = filter === 'completed';
       return task.isCompleted === requiredStatus;
     });
-    return [list, activeTasksCounter]
+    return [list, activeTasksCounter];
   }, [todoList, filter]);
 
   const handleTodoCreate = (value: string) => {
     if (!value) {
       return;
-    };
+    }
     const task: Task = {
       text: value,
       isCompleted: false,
@@ -51,7 +50,9 @@ const App: React.FC = () => {
   };
 
   const handleTodoUpdate = (id: number, data: Task) => {
-    const newArr = todoList.map((task) => task.id === id ? data : task);
+    const newArr = todoList.map((task) => {
+      return task.id === id ? data : task;
+    });
     setTodoList(newArr);
   };
 
@@ -63,10 +64,9 @@ const App: React.FC = () => {
   const handleSelectAll = () => {
     const newArr = todoList.map((task) => {
       if (activeTasksCounter === 0) {
-        return { ...task, isCompleted: false }
-      } else {
-        return { ...task, isCompleted: true }
-      };
+        return { ...task, isCompleted: false };
+      }
+      return { ...task, isCompleted: true };
     });
     setTodoList(newArr);
   };
@@ -74,7 +74,7 @@ const App: React.FC = () => {
   const handleClearCompleted = () => {
     const newArr = todoList.filter((task) => !task.isCompleted);
     setTodoList(newArr);
-  }
+  };
 
   return (
     <div className={styles.App}>

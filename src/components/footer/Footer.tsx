@@ -2,14 +2,14 @@ import styles from './Footer.module.css';
 import CounterActiveTasks from './CounterActiveTasks';
 import BtnDelCompletedTasks from './BtnDelCompletedTasks';
 import Filtres from './Filtres';
-import { FilterValue, SetFilter } from '../../types';
+import { FilterValue, SetFilter } from '../../utilites/types';
 
 interface Props{
   activeTasksCounter: number,
   onFilterChange: SetFilter,
   onCompletedClear: () => void,
   filter: FilterValue,
-};
+}
 
 const Footer = (props: Props) => {
   const { activeTasksCounter, onFilterChange, onCompletedClear, filter } = props;
@@ -22,11 +22,11 @@ const Footer = (props: Props) => {
         onFilterChange={onFilterChange}
         filter={filter}
       />
-      <BtnDelCompletedTasks 
+      <BtnDelCompletedTasks
         onCompletedClear={onCompletedClear}
       />
     </footer>
-  )
-}
+  );
+};
 
 export default Footer;

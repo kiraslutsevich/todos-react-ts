@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Filtres.module.css';
 import Category from './Category';
-import { FilterValue, SetFilter } from '../../types';
+import { FilterValue, SetFilter } from '../../utilites/types';
 
 interface Props {
   onFilterChange: SetFilter;
@@ -20,8 +20,8 @@ const filterButtons: Array<{ title: string; value: FilterValue }> = [
   {
     title: 'Completed',
     value: 'completed',
-  }
-]
+  },
+];
 
 const Filtres: React.FC<Props> = (props) => {
   const { onFilterChange, filter } = props;

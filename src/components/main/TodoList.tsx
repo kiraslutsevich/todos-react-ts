@@ -1,6 +1,6 @@
-import styles from './TodoList.module.css'
+import styles from './TodoList.module.css';
 import Todo from './Todo';
-import { Task } from '../../types';
+import { Task } from '../../utilites/types';
 
 interface Props {
   onTodoUpdate: (id: number, data: Task) => void,

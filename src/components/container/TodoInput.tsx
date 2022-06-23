@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './TodoInput.module.css'
+import styles from './TodoInput.module.css';
 
 interface Props {
   onTodoCreate: (params: string) => void;
@@ -25,7 +25,7 @@ const TodoInput: React.FC<Props> = (props) => {
         className={styles.input}
         value={value}
         onChange={(ev) => {
-          setValue(ev.target.value)
+          setValue(ev.target.value);
         }}
       />
       <button
@@ -35,8 +35,7 @@ const TodoInput: React.FC<Props> = (props) => {
         +
       </button>
     </form>
-  )
-}
+  );
+};
 
 export default TodoInput;
-

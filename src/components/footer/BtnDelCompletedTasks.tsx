@@ -13,7 +13,7 @@ const BtnDelCompletedTasks: React.FC<Props> = (props) => {
     >
       Clear completed
     </button>
-  )
-}
+  );
+};
 
 export default BtnDelCompletedTasks;

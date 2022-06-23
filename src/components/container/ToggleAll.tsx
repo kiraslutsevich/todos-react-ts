@@ -13,7 +13,7 @@ const ToggleAll: React.FC<Props> = (props) => {
     >
       ❯
     </button>
-  )
-}
+  );
+};
 
 export default ToggleAll;

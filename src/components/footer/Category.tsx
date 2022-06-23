@@ -1,6 +1,6 @@
-import styles from './Category.module.css';
 import React from 'react';
-import { FilterValue, SetFilter } from '../../types';
+import styles from './Category.module.css';
+import { FilterValue, SetFilter } from '../../utilites/types';
 
 interface Props {
   text: string,
@@ -19,7 +19,7 @@ const Category: React.FC<Props> = (props) => {
     >
       {text}
     </button>
-  )
-}
+  );
+};
 
 export default Category;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './Todo.module.css';
-import { Task } from '../../types';
+import { Task } from '../../utilites/types';
 
 interface Props {
   task: Task,
@@ -12,7 +12,6 @@ const Todo: React.FC<Props> = (props) => {
   const { task, onTodoDelete, onTodoUpdate } = props;
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputValue] = useState(task.text);
-
 
   return (
     <div className={styles.todo}>
@@ -30,8 +29,8 @@ const Todo: React.FC<Props> = (props) => {
         </div>
       </label>
       <div>
-        {isEditing ?
-          <input
+        {isEditing
+          ? <input
             className={styles.editText}
             value={inputValue}
 
