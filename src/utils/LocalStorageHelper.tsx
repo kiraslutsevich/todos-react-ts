@@ -6,7 +6,11 @@ class LocalStorageHelper<DataType> {
   }
 
   get = (): DataType => {
-    return JSON.parse(localStorage.getItem(this.key) || '[]');
+    let receivedData = localStorage.getItem(this.key);
+    if (typeof receivedData !== 'string') {
+      receivedData = 'false';
+    }
+    return JSON.parse(receivedData);
   };
 
   set(data: DataType) {

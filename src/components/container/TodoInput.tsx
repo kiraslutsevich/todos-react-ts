@@ -1,17 +1,15 @@
 import { useState } from 'react';
+import { useAppDispatch } from '../../redux/store';
 import styles from './TodoInput.module.css';
+import actions from '../../redux/mainReducer/main.actions';
 
-interface Props {
-  onTodoCreate: (params: string) => void;
-}
-
-const TodoInput: React.FC<Props> = (props) => {
-  const { onTodoCreate } = props;
+const TodoInput: React.FC = () => {
   const [value, setValue] = useState('');
+  const dispatch = useAppDispatch();
 
   const onSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    onTodoCreate(value.trim());
+    dispatch(actions.addTodo(value.trim()));
     setValue('');
   };
 

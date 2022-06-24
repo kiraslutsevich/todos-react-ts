@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Category.module.css';
 import { FilterValue } from '../../utils/types';
 import { useAppSelector, useAppDispatch } from '../../redux/store';
-import filterActions from '../../redux/filterReducer/filter.actions';
+import actions from '../../redux/mainReducer/main.actions';
 
 interface Props {
   text: string,
@@ -11,13 +11,13 @@ interface Props {
 
 const Category: React.FC<Props> = (props) => {
   const { text, value } = props;
-  const state = useAppSelector((state) => state.filter.filter);
+  const state = useAppSelector((state) => state.main.filter);
   const dispatch = useAppDispatch();
 
   return (
     <button
       className={state === value ? styles.active : styles.passive}
-      onClick={() => dispatch(filterActions.setFilter(value))}
+      onClick={() => dispatch(actions.setFilter(value))}
     >
       {text}
     </button>

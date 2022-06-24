@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import styles from './Todo.module.css';
 import { Task } from '../../utils/types';
+import { useAppDispatch } from '../../redux/store';
+import actions from '../../redux/mainReducer/main.actions';
 
 interface Props {
   task: Task,
-  onTodoDelete: (id: number) => void,
-  onTodoUpdate: (id: number, data: Task) => void,
 }
 
 const Todo: React.FC<Props> = (props) => {
-  const { task, onTodoDelete, onTodoUpdate } = props;
+  const { task } = props;
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputValue] = useState(task.text);
+  const dispatch = useAppDispatch();
 
   return (
     <div className={styles.todo}>
@@ -21,7 +22,10 @@ const Todo: React.FC<Props> = (props) => {
           type="checkbox"
           checked={task.isCompleted}
           onChange={
-            () => onTodoUpdate(task.id, { ...task, isCompleted: !task.isCompleted })}
+            () => dispatch(actions.updateTodo({
+              id: task.id,
+              data: { ...task, isCompleted: !task.isCompleted },
+            }))}
         />
         <div
           className={styles.checkboxText}>
@@ -39,7 +43,10 @@ const Todo: React.FC<Props> = (props) => {
             }}
 
             onBlur={() => {
-              onTodoUpdate(task.id, { ...task, text: inputValue.trim() });
+              dispatch(actions.updateTodo({
+                id: task.id,
+                data: { ...task, text: inputValue.trim() },
+              }));
               setIsEditing(false);
             }}
             autoFocus
@@ -56,7 +63,7 @@ const Todo: React.FC<Props> = (props) => {
       <button
         className={styles.delete}
         onClick={
-          () => onTodoDelete(task.id)}
+          () => dispatch(actions.deleteTodo(task.id))}
       >
         +
       </button>

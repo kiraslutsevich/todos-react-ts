@@ -1,15 +1,13 @@
 import styles from './BtnDelCompletedTasks.module.css';
+import actions from '../../redux/mainReducer/main.actions';
+import { useAppDispatch } from '../../redux/store';
 
-interface Props {
-  onCompletedClear: () => void,
-}
-
-const BtnDelCompletedTasks: React.FC<Props> = (props) => {
-  const { onCompletedClear } = props;
+const BtnDelCompletedTasks: React.FC = () => {
+  const dispatch = useAppDispatch();
   return (
     <button
       className={styles.btn}
-      onClick={onCompletedClear}
+      onClick={() => dispatch(actions.clearCompleted())}
     >
       Clear completed
     </button>

@@ -2,11 +2,9 @@ import { createStore, combineReducers } from 'redux';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 
 import main from './mainReducer/main.reducer';
-import filter from './filterReducer/filter.reduser';
 
 const rootReducer = combineReducers({
   main,
-  filter,
 });
 
 const store = createStore(rootReducer);

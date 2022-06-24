@@ -1,15 +1,15 @@
 import styles from './ToggleAll.module.css';
 
-interface Props {
-  onAllSelect: () => void;
-}
+// interface Props {
+//   onAllSelect: () => void;
+// }
 
-const ToggleAll: React.FC<Props> = (props) => {
-  const { onAllSelect } = props;
+const ToggleAll: React.FC = () => {
+  // const { onAllSelect } = props;
   return (
     <button
       className={styles.button}
-      onClick={() => onAllSelect()}
+      // onClick={() => onAllSelect()}
     >
       ❯
     </button>

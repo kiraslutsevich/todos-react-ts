@@ -3,22 +3,21 @@ import CounterActiveTasks from './CounterActiveTasks';
 import BtnDelCompletedTasks from './BtnDelCompletedTasks';
 import Filtres from './Filtres';
 
-interface Props {
-  activeTasksCounter: number,
-  onCompletedClear: () => void,
-}
+// interface Props {
+//   activeTasksCounter: number,
+// }
 
-const Footer = (props: Props) => {
-  const { activeTasksCounter, onCompletedClear } = props;
+const Footer = () => {
+  // const { activeTasksCounter, onCompletedClear } = props;
   return (
     <footer className={styles.footer}>
       <CounterActiveTasks
-        count={activeTasksCounter}
+        // count={activeTasksCounter}
       />
       <Filtres
       />
       <BtnDelCompletedTasks
-        onCompletedClear={onCompletedClear}
+        // onCompletedClear={onCompletedClear}
       />
     </footer>
   );
