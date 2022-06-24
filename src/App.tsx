@@ -6,12 +6,15 @@ import ToggleAll from './components/container/ToggleAll';
 import TodoList from './components/main/TodoList';
 import Footer from './components/footer/Footer';
 import storage from './utilites/storage';
-import { FilterValue, Task } from './utilites/types';
+import { Task } from './utilites/types';
 import CreateRandomId from './utilites/CreateRandomId';
+import { useAppSelector } from './redux/store';
 
 const App: React.FC = () => {
-  const [todoList, setTodoList] = useState<Task[]>(storage.todosList.get());
-  const [filter, setFilter] = useState<FilterValue>(storage.todoFilter.get() || 'all');
+  const [todoList, setTodoList] = useState<Task[]>(storage.todosList.get() || []);
+  const filter = useAppSelector((store) => {
+    return store.filter.filter;
+  });
 
   useEffect(() => {
     storage.todosList.set(todoList);
@@ -95,9 +98,7 @@ const App: React.FC = () => {
       {todoList.length > 0 && (
         <Footer
           activeTasksCounter={activeTasksCounter}
-          onFilterChange={setFilter}
           onCompletedClear={handleClearCompleted}
-          filter={filter}
         />
       )}
     </div>

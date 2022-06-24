@@ -3,14 +3,13 @@ import { FilterValue } from '../../utilites/types';
 import storage from '../../utilites/storage';
 
 const getInitialState = () => ({
-  todoList: storage.todosList.get(),
   filter: storage.todoFilter.get() || 'all',
 });
 
 const reducer = (
   // eslint-disable-next-line default-param-last
   state = getInitialState(),
-  actionData: { type: string; payload: unknown },
+  actionData: { type: string; payload: FilterValue },
 ): ReturnType<typeof getInitialState> => {
   const { type, payload } = actionData;
 
@@ -18,7 +17,7 @@ const reducer = (
     case actionTypes.SET_FILTER:
       return {
         ...state,
-        filter: payload as FilterValue,
+        filter: payload,
       };
 
     default:

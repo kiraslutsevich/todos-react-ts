@@ -1,12 +1,7 @@
 import React from 'react';
 import styles from './Filtres.module.css';
 import Category from './Category';
-import { FilterValue, SetFilter } from '../../utilites/types';
-
-interface Props {
-  onFilterChange: SetFilter;
-  filter: FilterValue;
-}
+import { FilterValue } from '../../utilites/types';
 
 const filterButtons: Array<{ title: string; value: FilterValue }> = [
   {
@@ -23,17 +18,13 @@ const filterButtons: Array<{ title: string; value: FilterValue }> = [
   },
 ];
 
-const Filtres: React.FC<Props> = (props) => {
-  const { onFilterChange, filter } = props;
-
+const Filtres: React.FC = () => {
   return (
     <div className={styles.list}>
       {filterButtons.map((item) => (
         <Category
           text={item.title}
           value={item.value}
-          onFilterChange={onFilterChange}
-          filter={filter}
           key={item.value}
         />
       ))}
