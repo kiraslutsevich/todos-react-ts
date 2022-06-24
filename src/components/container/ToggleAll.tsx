@@ -1,15 +1,15 @@
 import styles from './ToggleAll.module.css';
-
-// interface Props {
-//   onAllSelect: () => void;
-// }
+import mainSelectores from '../../redux/mainReducer/main.selects';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
+import actions from '../../redux/mainReducer/main.actions';
 
 const ToggleAll: React.FC = () => {
-  // const { onAllSelect } = props;
+  const { activeCounter } = useAppSelector(mainSelectores.getFilteredTasksWithCount);
+  const dispatch = useAppDispatch();
   return (
     <button
       className={styles.button}
-      // onClick={() => onAllSelect()}
+      onClick={() => dispatch(actions.toggleAll(activeCounter))}
     >
       ❯
     </button>

@@ -68,6 +68,17 @@ const reducer = (
         todoList: state.todoList.filter((task) => !task.isCompleted),
       };
 
+    case actionTypes.TOGGLE_ALL:
+      return {
+        ...state,
+        todoList: state.todoList.map((task) => {
+          if (payload as number === 0) {
+            return { ...task, isCompleted: false };
+          }
+          return { ...task, isCompleted: true };
+        }),
+      };
+
     default:
       return state;
   }

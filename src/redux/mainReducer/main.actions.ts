@@ -8,6 +8,7 @@ const actionTypes = {
   deleteTodo: (payload: number) => ({ type: TYPES.DELETE_TODO, payload }),
   updateTodo: (payload: { id: number, data: Task }) => ({ type: TYPES.UPDATE_TODO, payload }),
   clearCompleted: () => ({ type: TYPES.CLEAR_COMPLETED }),
+  toggleAll: (payload: number) => ({ type: TYPES.TOGGLE_ALL, payload }),
 };
 
 export default actionTypes;

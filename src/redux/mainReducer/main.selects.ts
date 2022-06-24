@@ -8,7 +8,7 @@ export default {
     (state: RootState) => state.main.filter,
     (list, filter) => {
       let activeCounter = 0;
-      list.filter((task) => {
+      const todoList = list.filter((task) => {
         if (!task.isCompleted) {
           activeCounter++;
         }
@@ -20,7 +20,7 @@ export default {
       });
 
       return {
-        list,
+        todoList,
         activeCounter,
       };
     },

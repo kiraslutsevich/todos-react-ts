@@ -1,14 +1,12 @@
 import styles from './CounterActiveTasks.module.css';
-
-// interface Props{
-//   count: number,
-// }
+import mainSelectores from '../../redux/mainReducer/main.selects';
+import { useAppSelector } from '../../redux/store';
 
 const CounterActiveTasks: React.FC = () => {
+  const { activeCounter } = useAppSelector(mainSelectores.getFilteredTasksWithCount);
   return (
     <div className={styles.count}>
-      {/* {props.count} */}
-       items left
+      {activeCounter} items left
     </div>
   );
 };

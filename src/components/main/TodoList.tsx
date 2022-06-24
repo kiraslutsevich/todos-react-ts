@@ -6,11 +6,11 @@ import mainSelectores from '../../redux/mainReducer/main.selects';
 import { Task } from '../../utils/types';
 
 const TodoList: React.FC = () => {
-  const { list } = useAppSelector(mainSelectores.getFilteredTasksWithCount);
+  const { todoList } = useAppSelector(mainSelectores.getFilteredTasksWithCount);
   return (
     <div className={styles.todoList}>
       {
-        list.map((task: Task) => (
+        todoList.map((task: Task) => (
           <Todo
             key={CreateRandomId()}
             task={task}
