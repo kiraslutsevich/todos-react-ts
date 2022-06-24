@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './Todo.module.css';
-import { Task } from '../../utilites/types';
+import { Task } from '../../utils/types';
 
 interface Props {
   task: Task,

@@ -5,13 +5,13 @@ import TodoInput from './components/container/TodoInput';
 import ToggleAll from './components/container/ToggleAll';
 import TodoList from './components/main/TodoList';
 import Footer from './components/footer/Footer';
-import storage from './utilites/storage';
-import { Task } from './utilites/types';
-import CreateRandomId from './utilites/CreateRandomId';
+import storage from './utils/storage';
+import { Task } from './utils/types';
+import CreateRandomId from './utils/CreateRandomId';
 import { useAppSelector } from './redux/store';
 
 const App: React.FC = () => {
-  const [todoList, setTodoList] = useState<Task[]>(storage.todosList.get() || []);
+  const [todoList, setTodoList] = useState<Task[]>(storage.todosList.get());
   const filter = useAppSelector((store) => {
     return store.filter.filter;
   });

@@ -1,6 +1,6 @@
 import styles from './TodoList.module.css';
 import Todo from './Todo';
-import { Task } from '../../utilites/types';
+import { Task } from '../../utils/types';
 import { useAppSelector, useAppDispatch } from '../../redux/store';
 import mainActions from '../../redux/mainReducer/main.actions';
 
@@ -15,7 +15,6 @@ const TodoList: React.FC<Props> = (props) => {
 
   const state = useAppSelector((state) => state.main.todoList);
   const dispatch = useAppDispatch();
-  // console.log(state);
 
   return (
     <div className={styles.todoList}>

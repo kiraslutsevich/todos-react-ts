@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Filtres.module.css';
 import Category from './Category';
-import { FilterValue } from '../../utilites/types';
+import { FilterValue } from '../../utils/types';
 
 const filterButtons: Array<{ title: string; value: FilterValue }> = [
   {

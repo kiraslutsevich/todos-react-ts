@@ -1,9 +1,10 @@
 import actionTypes from './main.actionTypes';
-import { Task } from '../../utilites/types';
-import storage from '../../utilites/storage';
+import { Task } from '../../utils/types';
+import storage from '../../utils/storage';
 
 const getInitialState = () => ({
   todoList: storage.todosList.get(),
+  filter: storage.todoFilter.get() || 'all',
 });
 
 const reducer = (

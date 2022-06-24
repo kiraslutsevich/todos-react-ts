@@ -1,6 +1,6 @@
 import actionTypes from './filter.actionTypes';
-import { FilterValue } from '../../utilites/types';
-import storage from '../../utilites/storage';
+import { FilterValue } from '../../utils/types';
+import storage from '../../utils/storage';
 
 const getInitialState = () => ({
   filter: storage.todoFilter.get() || 'all',

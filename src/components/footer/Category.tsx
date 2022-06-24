@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Category.module.css';
-import { FilterValue } from '../../utilites/types';
+import { FilterValue } from '../../utils/types';
 import { useAppSelector, useAppDispatch } from '../../redux/store';
 import filterActions from '../../redux/filterReducer/filter.actions';
 
