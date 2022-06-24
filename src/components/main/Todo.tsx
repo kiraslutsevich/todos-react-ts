@@ -29,7 +29,6 @@ const Todo: React.FC<Props> = (props) => {
         />
         <div
           className={styles.checkboxText}>
-
         </div>
       </label>
       <div>
