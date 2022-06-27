@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Task } from '../../utils/types';
 import { useAppDispatch } from '../../redux/store';
 import actions from '../../redux/mainReducer/main.actions';
-import { TodoStyle, DeleteBtn, Checkbox } from './Todo.styles';
+import { TodoStyle } from './Todo.styles';
 
 interface Props {
   task: Task,
@@ -16,8 +16,7 @@ const Todo: React.FC<Props> = (props) => {
 
   return (
     <TodoStyle>
-      <Checkbox
-        isChecked={task.isCompleted}
+      <button className="checkbox"
         onClick={
           () => dispatch(actions.updateTodo({
             id: task.id,
@@ -25,7 +24,7 @@ const Todo: React.FC<Props> = (props) => {
           }))}
       >
         {task.isCompleted && '✓'}
-      </Checkbox>
+      </button>
       <div>
         {isEditing
           ? <input
@@ -54,12 +53,13 @@ const Todo: React.FC<Props> = (props) => {
           </div>
         }
       </div>
-      <DeleteBtn
+      <button
+        className="delete-btn"
         onClick={
           () => dispatch(actions.deleteTodo(task.id))}
       >
         +
-      </DeleteBtn>
+      </button>
     </TodoStyle>
   );
 };

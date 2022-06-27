@@ -8,10 +8,6 @@ import { useAppSelector } from './redux/store';
 import { AppStyles } from './App.styles';
 
 const App: React.FC = () => {
-  const filter = useAppSelector((store) => {
-    return (store.main.filter);
-  });
-
   const todoList = useAppSelector((store) => {
     return (store.main.todoList);
   });

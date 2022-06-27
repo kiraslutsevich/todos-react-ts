@@ -34,34 +34,31 @@ export const TodoStyle = styled.div`
   padding: 0px 40px;
   align-self: center;
   }
-`;
 
-export const DeleteBtn = styled.button`
+ .delete-btn{
   background: none;
   color: aquamarine;
   transform: rotate(45deg);
   border: none;
   font-size: 20px;
-  &:hover{
-    color: tomato;
+
+ .delete-btn:hover{
+  color: tomato;
   }
-`;
+ }
 
-type CheckboxProps = {
-  isChecked: boolean;
+  .checkbox{
+  color: aquamarine;
+  width: 20px;
+  height: 20px;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-width: 0;
+  border-style: none;
+  border-color: none;
+  font-size: 20px;
+  border: 1px solid aquamarine;
 }
-
-export const Checkbox = styled.button<CheckboxProps>`
- color: aquamarine;
- width: 20px;
- height: 20px;
- background: none;
- display: flex;
- align-items: center;
- justify-content: center;
- border-width: 0;
- border-style: none;
- border-color: none;
- font-size: 20px;
- border: 1px solid aquamarine;
 `;
