@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../redux/store';
-import styles from './TodoInput.module.css';
+import { Form } from './TodoInput.styles';
 import actions from '../../redux/mainReducer/main.actions';
 
 const TodoInput: React.FC = () => {
@@ -14,25 +14,24 @@ const TodoInput: React.FC = () => {
   };
 
   return (
-    <form
-      className={styles.form}
+    <Form
       onSubmit={onSubmit}
     >
       <input
         placeholder='What needs to be done?'
-        className={styles.input}
+        className="input"
         value={value}
         onChange={(ev) => {
           setValue(ev.target.value);
         }}
       />
       <button
-        className={styles.btn}
+        className="btn"
         type="submit"
       >
         +
       </button>
-    </form>
+    </Form>
   );
 };
 

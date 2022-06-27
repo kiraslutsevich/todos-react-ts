@@ -1,4 +1,6 @@
-.button {
+import styled from 'styled-components';
+
+export const Button = styled.button`
   background: none;
   border: none;
   transform: rotate(90deg);
@@ -10,8 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.button:hover {
+  :hover {
   color: aquamarine;
 }
+`;

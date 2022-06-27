@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
-import styles from './App.module.css';
+import React from 'react';
 import Header from './components/header/Header';
 import TodoInput from './components/container/TodoInput';
 import ToggleAll from './components/container/ToggleAll';
 import TodoList from './components/main/TodoList';
 import Footer from './components/footer/Footer';
-import storage from './utils/storage';
 import { useAppSelector } from './redux/store';
+import { AppStyles } from './App.styles';
 
 const App: React.FC = () => {
   const filter = useAppSelector((store) => {
@@ -17,30 +16,18 @@ const App: React.FC = () => {
     return (store.main.todoList);
   });
 
-  useEffect(() => {
-    storage.todosList.set(todoList);
-  }, [todoList]);
-
-  useEffect(() => {
-    storage.todoFilter.set(filter);
-  }, [filter]);
-
   return (
-    <div className={styles.App}>
+    <AppStyles>
       <Header />
-
-      <section className={styles.container}>
+      <section className="container">
         <ToggleAll />
-
         <TodoInput />
       </section>
-
       <TodoList />
-
       {todoList.length > 0 && (
         <Footer />
       )}
-    </div>
+    </AppStyles>
   );
 };
 

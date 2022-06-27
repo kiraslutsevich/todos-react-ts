@@ -1,9 +1,9 @@
-.form {
+import styled from 'styled-components';
+
+export const Form = styled.form`
   position: relative;
   flex: 0 1 70%;
   height: 40px;
-}
-
 .input {
   border: solid 1px rgb(247, 247, 247);
   border-right: none;
@@ -40,9 +40,7 @@
 }
 
 @media (max-width:700px) {
-  .form {
     height: 20px;
-  }
 
   .input {
     font-size: 10px;
@@ -55,3 +53,4 @@
     width: 25px;
   }
 }
+`;

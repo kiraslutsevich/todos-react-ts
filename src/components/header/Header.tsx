@@ -1,12 +1,12 @@
-import styles from './Header.module.css';
+import { HeaderWrapper } from './Header.styles';
 
 const Header: React.FC = () => {
   return (
-    <h1
-      className={styles.head}
-    >
-      todos
-    </h1>
+    <HeaderWrapper>
+      <h1 className="text">
+        todos
+      </h1>
+    </HeaderWrapper>
   );
 };
 

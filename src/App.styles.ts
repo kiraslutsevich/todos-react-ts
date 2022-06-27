@@ -1,4 +1,6 @@
-.App {
+import styled from 'styled-components';
+
+export const AppStyles = styled.div`
   text-align: center;
   margin: 20px auto;
   width: 70%;
@@ -8,20 +10,15 @@
   box-shadow: 4px 4px 16px 1px rgba(34, 60, 80, 0.28);
   padding: 20px;
   font-family: 'Poppins', sans-serif;
-}
-
-@media (max-width:360px) {
-  .App {
+  @media (max-width:360px) {
     width: 250px;
     margin: 10px auto;
   }
-
-}
-
-.container {
+  .container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
 }
+`;

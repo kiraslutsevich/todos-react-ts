@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Category.module.css';
+import { CategoryStyle } from './Category.styles';
 import { FilterValue } from '../../utils/types';
 import { useAppSelector, useAppDispatch } from '../../redux/store';
 import actions from '../../redux/mainReducer/main.actions';
@@ -13,14 +13,15 @@ const Category: React.FC<Props> = (props) => {
   const { text, value } = props;
   const state = useAppSelector((state) => state.main.filter);
   const dispatch = useAppDispatch();
+  const isActive = state === value;
 
   return (
-    <button
-      className={state === value ? styles.active : styles.passive}
+    <CategoryStyle
+      isActive={isActive}
       onClick={() => dispatch(actions.setFilter(value))}
     >
       {text}
-    </button>
+    </CategoryStyle>
   );
 };
 

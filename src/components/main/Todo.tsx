@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import styles from './Todo.module.css';
 import { Task } from '../../utils/types';
 import { useAppDispatch } from '../../redux/store';
 import actions from '../../redux/mainReducer/main.actions';
+import { TodoStyle, DeleteBtn, Checkbox } from './Todo.styles';
 
 interface Props {
   task: Task,
@@ -15,26 +15,21 @@ const Todo: React.FC<Props> = (props) => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className={styles.todo}>
-      <label className={styles.checkbox}>
-        <input
-          className={styles.checkInput}
-          type="checkbox"
-          checked={task.isCompleted}
-          onChange={
-            () => dispatch(actions.updateTodo({
-              id: task.id,
-              data: { ...task, isCompleted: !task.isCompleted },
-            }))}
-        />
-        <div
-          className={styles.checkboxText}>
-        </div>
-      </label>
+    <TodoStyle>
+      <Checkbox
+        isChecked={task.isCompleted}
+        onClick={
+          () => dispatch(actions.updateTodo({
+            id: task.id,
+            data: { ...task, isCompleted: !task.isCompleted },
+          }))}
+      >
+        {task.isCompleted && '✓'}
+      </Checkbox>
       <div>
         {isEditing
           ? <input
-            className={styles.editText}
+            className="edit-text"
             value={inputValue}
 
             onChange={(ev) => {
@@ -51,7 +46,7 @@ const Todo: React.FC<Props> = (props) => {
             autoFocus
           />
           : <div
-            className={styles.text}
+            className="text"
             onDoubleClick={
               () => setIsEditing(true)}
           >
@@ -59,14 +54,13 @@ const Todo: React.FC<Props> = (props) => {
           </div>
         }
       </div>
-      <button
-        className={styles.delete}
+      <DeleteBtn
         onClick={
           () => dispatch(actions.deleteTodo(task.id))}
       >
         +
-      </button>
-    </div >
+      </DeleteBtn>
+    </TodoStyle>
   );
 };
 

@@ -12,10 +12,6 @@ class LocalStorageHelper<DataType> {
     }
     return JSON.parse(receivedData);
   };
-
-  set(data: DataType) {
-    localStorage.setItem(this.key, JSON.stringify(data));
-  }
 }
 
 export default LocalStorageHelper;

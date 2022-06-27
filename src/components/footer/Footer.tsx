@@ -1,16 +1,16 @@
-import styles from './Footer.module.css';
 import CounterActiveTasks from './CounterActiveTasks';
 import BtnDelCompletedTasks from './BtnDelCompletedTasks';
 import Filtres from './Filtres';
+import { FooterStyles } from './Footer.styles';
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
+    <FooterStyles>
       <CounterActiveTasks />
       <Filtres
       />
       <BtnDelCompletedTasks />
-    </footer>
+    </FooterStyles>
   );
 };
 
