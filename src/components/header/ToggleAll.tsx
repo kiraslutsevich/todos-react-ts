@@ -1,6 +1,6 @@
 import mainSelectores from '../../redux/mainReducer/main.selects';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
-import actions from '../../redux/mainReducer/main.actions';
+import { toggleAll } from '../../redux/mainReducer/todoSlice';
 import { Button } from './ToggleAll.styles';
 
 const ToggleAll: React.FC = () => {
@@ -8,7 +8,7 @@ const ToggleAll: React.FC = () => {
   const dispatch = useAppDispatch();
   return (
     <Button
-      onClick={() => dispatch(actions.toggleAll(activeCounter))}
+      onClick={() => dispatch(toggleAll(activeCounter))}
     >
       ❯
     </Button>

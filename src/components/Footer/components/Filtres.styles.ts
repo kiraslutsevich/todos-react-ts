@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FiltresStyle = styled.div`
+export const StyledFiltres = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;

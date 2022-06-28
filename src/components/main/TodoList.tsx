@@ -1,22 +1,22 @@
 import Todo from './Todo';
 import { useAppSelector } from '../../redux/store';
-import CreateRandomId from '../../utils/CreateRandomId';
+import createRandomId from '../../utils/createRandomId';
 import mainSelectores from '../../redux/mainReducer/main.selects';
 import { Task } from '../../utils/types';
-import { TodoListStyle } from './TodoList.styles';
+import { StyledTodoList } from './TodoList.styles';
 
 const TodoList: React.FC = () => {
-  const { todoList } = useAppSelector(mainSelectores.getFilteredTasksWithCount);
+  const todoList = useAppSelector(mainSelectores.getFilteredTasksWithCount);
   return (
-    <TodoListStyle>
+    <StyledTodoList>
       {
-        todoList.map((task: Task) => (
+        todoList.todoList.map((task: Task) => (
           <Todo
-            key={CreateRandomId()}
+            key={createRandomId()}
             task={task}
           />
         ))}
-    </TodoListStyle>
+    </StyledTodoList>
   );
 };
 

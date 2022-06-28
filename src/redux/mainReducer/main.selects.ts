@@ -1,11 +1,10 @@
-import { createSelector } from 'reselect';
-
+import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 export default {
   getFilteredTasksWithCount: createSelector(
-    (state: RootState) => state.main.todoList,
-    (state: RootState) => state.main.filter,
+    (state: RootState) => state.todoList.list,
+    (state: RootState) => state.todoList.filter,
     (list, filter) => {
       let activeCounter = 0;
       const todoList = list.filter((task) => {

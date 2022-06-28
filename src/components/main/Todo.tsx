@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Task } from '../../utils/types';
 import { useAppDispatch } from '../../redux/store';
-import actions from '../../redux/mainReducer/main.actions';
-import { TodoStyle } from './Todo.styles';
+import { StyledTodo } from './Todo.styles';
+import { updateTodo, deleteTodo } from '../../redux/mainReducer/todoSlice';
 
 interface Props {
   task: Task,
@@ -15,10 +15,10 @@ const Todo: React.FC<Props> = (props) => {
   const dispatch = useAppDispatch();
 
   return (
-    <TodoStyle>
+    <StyledTodo>
       <button className="checkbox"
         onClick={
-          () => dispatch(actions.updateTodo({
+          () => dispatch(updateTodo({
             id: task.id,
             data: { ...task, isCompleted: !task.isCompleted },
           }))}
@@ -27,40 +27,42 @@ const Todo: React.FC<Props> = (props) => {
       </button>
       <div>
         {isEditing
-          ? <input
-            className="edit-text"
-            value={inputValue}
+          ? (
+            <input
+              className="edit-text"
+              value={inputValue}
 
-            onChange={(ev) => {
-              setInputValue(ev.target.value);
-            }}
+              onChange={(ev) => {
+                setInputValue(ev.target.value);
+              }}
 
-            onBlur={() => {
-              dispatch(actions.updateTodo({
-                id: task.id,
-                data: { ...task, text: inputValue.trim() },
-              }));
-              setIsEditing(false);
-            }}
-            autoFocus
-          />
-          : <div
-            className="text"
-            onDoubleClick={
-              () => setIsEditing(true)}
-          >
-            {task.text}
-          </div>
+              onBlur={() => {
+                dispatch(updateTodo({
+                  id: task.id,
+                  data: { ...task, text: inputValue.trim() },
+                }));
+                setIsEditing(false);
+              }}
+              autoFocus
+            />
+          )
+          : (
+            <div
+              className="text"
+              onDoubleClick={() => setIsEditing(true)}
+            >
+              {task.text}
+            </div>
+          )
         }
       </div>
       <button
         className="delete-btn"
-        onClick={
-          () => dispatch(actions.deleteTodo(task.id))}
+        onClick={() => dispatch(deleteTodo(task.id))}
       >
         +
       </button>
-    </TodoStyle>
+    </StyledTodo>
   );
 };
 

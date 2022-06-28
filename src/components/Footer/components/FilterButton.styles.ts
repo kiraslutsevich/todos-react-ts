@@ -4,7 +4,7 @@ type StyledProps = {
   isActive: boolean,
 }
 
-export const CategoryStyle = styled.button<StyledProps>`
+export const StyledFilterButton = styled.button<StyledProps>`
   color: ${(props) => (props.isActive ? 'aquamarine' : 'darkgray')};
   border: ${(props) => (props.isActive ? '1px solid aquamarine' : '1px solid darkgray')};
   border-radius: 2px;

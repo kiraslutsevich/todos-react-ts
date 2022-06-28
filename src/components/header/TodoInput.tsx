@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../redux/store';
 import { Form } from './TodoInput.styles';
-import actions from '../../redux/mainReducer/main.actions';
+import { addTodo } from '../../redux/mainReducer/todoSlice';
 
 const TodoInput: React.FC = () => {
   const [value, setValue] = useState('');
@@ -9,7 +9,7 @@ const TodoInput: React.FC = () => {
 
   const onSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    dispatch(actions.addTodo(value.trim()));
+    dispatch(addTodo(value.trim()));
     setValue('');
   };
 

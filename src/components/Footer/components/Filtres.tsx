@@ -1,7 +1,7 @@
 import React from 'react';
-import Category from './Category';
-import { FilterValue } from '../../utils/types';
-import { FiltresStyle } from './Filtres.styles';
+import FilterButton from './FilterButton';
+import { FilterValue } from '../../../utils/types';
+import { StyledFiltres } from './Filtres.styles';
 
 const filterButtons: Array<{ title: string; value: FilterValue }> = [
   {
@@ -20,15 +20,15 @@ const filterButtons: Array<{ title: string; value: FilterValue }> = [
 
 const Filtres: React.FC = () => {
   return (
-    <FiltresStyle>
+    <StyledFiltres>
       {filterButtons.map((item) => (
-        <Category
+        <FilterButton
           text={item.title}
           value={item.value}
           key={item.value}
         />
       ))}
-    </FiltresStyle>
+    </StyledFiltres>
   );
 };
 

@@ -7,7 +7,9 @@ export const Btn = styled.button`
   font-weight: 700;
   z-index: 1;
   width: 120px;
+  font-size: 12px;
+
   :hover {
-  border: 1px solid aquamarine;
-}
+    border: 1px solid aquamarine;
+  }
 `;
